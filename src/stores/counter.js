@@ -38,12 +38,12 @@ const notify = (text, type) => { // thông báo
 };
 
 
-const getCart = async (id) => {
-  console.log('chạy get cart')
-  const response = await get_cart_byIdUser(id)
-  return response.data
+// const getCart = async (id) => {
+//   console.log('chạy get cart')
+//   const response = await get_cart_byIdUser(id)
+//   return response.data
 
-}
+// }
 // const cart = (getCookie('login_token_qlsp') ? (await getCart(getCookie('login_token_qlsp').user.id)) : null)
 export const userStore = defineStore("login", {
   state: () => {
@@ -70,7 +70,7 @@ export const userStore = defineStore("login", {
         createTime: response.data.user.createTime,
         gmail: response.data.user.gmail
       };
-      this.cart = await getCart(response.data.user.id)
+      // this.cart = await getCart(response.data.user.id)
 
       // return response.data.user
       // console.log("login",this.cart)
@@ -96,7 +96,7 @@ export const userStore = defineStore("login", {
       //   console.log(data)
       //   // window.location.href = data.data.url;
       // })
-      this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+      // this.cart = await getCart(getCookie('login_token_qlsp').user.id)
     },
 
     async addCartItem(product, quantity) {
@@ -108,7 +108,8 @@ export const userStore = defineStore("login", {
       await get_check_cartItem(getCookie('login_token_qlsp').user.id, product.id)
 
       await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
-      this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+      // this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+      this.cart = await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).data
 
       // return response.data.user
       notify("Thêm " + quantity + "  " + product.name + " vào giỏ hảng thành công", "success")
@@ -124,7 +125,9 @@ export const userStore = defineStore("login", {
 
 
       await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
-      this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+
+      this.cart = await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).data
+      // this.cart = await getCart(getCookie('login_token_qlsp').user.id)
 
       // return response.data.user
       notify("cập nhật " + quantity + "  " + product.name + " vào giỏ hảng thành công", "success")
