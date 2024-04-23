@@ -173,6 +173,8 @@ export default {
       },
     ];
 
+    console.log("chạy home");
+
     const datablog = ref([]);
     const paramBlog = {
       page: 0,

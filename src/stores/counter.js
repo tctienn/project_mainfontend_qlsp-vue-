@@ -39,17 +39,17 @@ const notify = (text, type) => { // thông báo
 
 
 const getCart = async (id) => {
-
+  console.log('chạy get cart')
   const response = await get_cart_byIdUser(id)
   return response.data
 
 }
-const cart = (getCookie('login_token_qlsp') ? (await getCart(getCookie('login_token_qlsp').user.id)) : null)
+// const cart = (getCookie('login_token_qlsp') ? (await getCart(getCookie('login_token_qlsp').user.id)) : null)
 export const userStore = defineStore("login", {
   state: () => {
     return {
       user: (getCookie('login_token_qlsp') ? getCookie('login_token_qlsp').user : null),
-      cart: cart,
+      cart: null,
       ay: 0
     }
 
@@ -77,11 +77,12 @@ export const userStore = defineStore("login", {
 
     },
 
-    async reload() { // dùng để bắt một số trường hợp lỗi để trả về dữ liệu cũ
+    async reload(data) { // dùng để bắt một số trường hợp lỗi để trả về dữ liệu cũ
       try {
-        console.log('load lại dữ liệu user')
-        if (this.user) {
-          this.cart = await getCart(this.user.id);
+
+        if (getCookie('login_token_qlsp')) {
+          console.log('load lại dữ liệu user')
+          this.cart = data;
         }
       } catch (error) {
         console.error('load dữ liệu er', error);

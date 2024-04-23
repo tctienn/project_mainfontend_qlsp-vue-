@@ -63,7 +63,7 @@ apiUser.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // Xử lý lỗi
-    console.log('lỗi', error)
+    console.log('lỗi trong api usser', error)
     notify(error.response.data, "error")
     const user = userStore();
     user.reload()

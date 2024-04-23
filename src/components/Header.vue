@@ -100,14 +100,14 @@
               </template>
             </v-dialog>
             <div class="icon" style="position: relative">
-              <router-link to="/login" v-if="user.getUserStore == null">
+              <router-link to="/login" v-if="user?.getUserStore == null">
                 <Icon icon="et:profile-female" width="20px"></Icon>
               </router-link>
               <router-link v-else to="/profile">
                 <img
                   src="/proflie.gif"
                   style="width: 25px; aspect-ratio: 2/2; border-radius: 5px"
-                  :title="user.getUserStore.userName"
+                  :title="user?.getUserStore.userName"
               /></router-link>
 
               <small
@@ -145,7 +145,7 @@
                 <v-icon class="icon" size="20px">mdi-cart-arrow-down</v-icon>
               </router-link>
               <div
-                v-if="!(user.getUserStore == null)"
+                v-if="!(user?.getUserStore == null)"
                 style="
                   position: absolute;
                   top: -10px;
@@ -159,7 +159,7 @@
                   aspect-ratio: 2/2;
                 "
               >
-                {{ user.getCartStore.length }}
+                {{ user?.getCartStore?.length }}
               </div>
             </div>
             <!-- <div style="position: relative">
@@ -174,6 +174,8 @@
     
 <script>
 // import { getCookie } from "@/api/CookieFuntion";
+import { get_cart_byIdUser } from "@/api/ApiUser";
+import { getCookie } from "@/api/CookieFuntion";
 import { userStore } from "@/stores/counter";
 import { Icon } from "@iconify/vue";
 import { ref } from "vue";
@@ -187,7 +189,22 @@ export default {
     const user = userStore();
     // console.log("load", getCookie("login_token_qlsp"));
     // console.log("load store", user.getCartStore?.length);
+    console.log("chạy header");
+    const getCart = async (id) => {
+      console.log("chạy get cart");
+      const response = await get_cart_byIdUser(id);
+      user.reload(response.data);
+      return response.data;
+    };
+    const load = async () => {
+      console.log("header", getCookie("login_token_qlsp"));
 
+      if (getCookie("login_token_qlsp")) {
+        getCart(getCookie("login_token_qlsp").user.id);
+      }
+      // if (getCookie("login_token_qlsp")) user.reload();
+    };
+    load();
     const ay = () => {
       // dialog.value = !dialog.value;
       // emit("as");
