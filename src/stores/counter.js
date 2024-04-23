@@ -49,7 +49,7 @@ export const userStore = defineStore("login", {
   state: () => {
     return {
       user: (getCookie('login_token_qlsp') ? getCookie('login_token_qlsp').user : null),
-      cart: null,
+      cart: [],
       ay: 0
     }
 

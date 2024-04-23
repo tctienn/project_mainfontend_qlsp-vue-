@@ -135,7 +135,7 @@ export default {
     var timeoutID = null;
     const sum = ref(
       user
-        ? CartUserS.getCartStore.reduce(
+        ? CartUserS.getCartStore?.reduce(
             (accumulator, currentValue) =>
               accumulator + currentValue.quantity * currentValue.price,
             0
