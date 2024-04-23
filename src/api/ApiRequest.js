@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 
-const url = 'http://localhost:8080/public'
+const url = 'https://aaaaaaaaaaassssssss-production.up.railway.app/public'
 
 
 
