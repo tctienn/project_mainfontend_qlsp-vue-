@@ -13,7 +13,7 @@
 </template>
   
   <script>
-import { deleteCookie, getCookie } from "@/api/CookieFuntion";
+import { getCookie } from "@/api/CookieFuntion";
 import router from "@/router";
 import Headers from "@/components/Header.vue";
 import { userStore } from "@/stores/counter";
