@@ -3,7 +3,7 @@
     <div class="product">
       <div class="productitem" v-for="(e, i) in data.data" :key="i">
         <div class="imgItem">
-          <router-link :to="'product/detail/' + e.id">
+          <router-link :to="'/product/detail/' + e.id">
             <img
               :src="e.mainImg"
               alt="imgproduct"
@@ -27,7 +27,9 @@
             <div class="itemHide">
               <v-icon>mdi-heart-outline</v-icon>
             </div>
-            <button class="itemHide" style="width: 70%">Mua ngay</button>
+            <button class="itemHide" style="width: 70%" @click="addCart(e)">
+              Mua ngay
+            </button>
 
             <router-link
               :to="'/product/detail/' + e.id"
@@ -49,7 +51,7 @@
               >mdi-star-outline</v-icon
             >
           </div>
-          <div>{{ e.gia }}</div>
+          <div>{{ formatVND(e.gia) }}</div>
         </div>
       </div>
     </div>
@@ -67,6 +69,7 @@
 </template>
         
     <script >
+import { userStore } from "@/stores/counter";
 import { ref, toRef, watch } from "vue";
 
 export default {
@@ -76,6 +79,7 @@ export default {
   setup(props, contex) {
     const data = toRef(props, "datas");
     const page = ref(0);
+    const user = userStore();
     const checkDate = (createAt) => {
       let now = new Date();
       let createdAtDate = new Date(createAt);
@@ -94,6 +98,27 @@ export default {
     const changePage = () => {
       contex.emit("page", page.value);
     };
+    const formatVND = (number) => {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    };
+
+    // add cart
+    var timeoutID = null;
+    var sl = 0;
+    const addCart = (product) => {
+      sl++;
+      if (timeoutID) {
+        // Nếu đã có timeoutID tồn tại, hủy bỏ timeout hiện tại
+        clearTimeout(timeoutID);
+      }
+      timeoutID = setTimeout(() => {
+        user.addCartItem(product, sl);
+        sl = 0;
+      }, 1000);
+    };
 
     watch;
     return {
@@ -101,6 +126,8 @@ export default {
       checkDate,
       page,
       changePage,
+      formatVND,
+      addCart,
     };
   },
 };

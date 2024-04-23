@@ -105,7 +105,7 @@
       <div style="width: 50%; padding: 10px; margin-left: 10px">
         <h4>{{ data.alias }}</h4>
         <h5>{{ data.name }}</h5>
-        <b style="color: red">{{ data.gia }}</b>
+        <b style="color: red">{{ formatVND(data.gia) }}</b>
         <br />
         <v-icon
           v-for="e in 5"
@@ -123,7 +123,10 @@
         <br />
         <span>
           kho: {{ data.inStock }}
-          <button :class="['butonDetail', buttonAnimation]" @click="addCard">
+          <button
+            :class="['butonDetail', buttonAnimation]"
+            @click="addCart(data)"
+          >
             Thêm vào giỏ
           </button>
           <v-icon>mdi-heart-outline</v-icon>
@@ -134,8 +137,11 @@
           <div style="font-size: 17px; width: max-content; display: inline">
             Catergory:
           </div>
-          <small v-for="(e, i) in data.catergorys" :key="i"
-            >{{ e.name }},
+          <small v-for="(e, i) in data.catergorys" :key="i">
+            <router-link
+              :to="`/collecttion?type=catergory&id=${i}&name=${e.name}`"
+              >{{ e.name }}</router-link
+            >,
           </small>
         </span>
         <br />
@@ -150,7 +156,11 @@
           <div style="font-size: 17px; width: max-content; display: inline">
             Size:
           </div>
-          <small v-for="(e, i) in data.sizes" :key="i">{{ e.name }}, </small>
+          <small v-for="(e, i) in data.sizes" :key="i">
+            <router-link :to="`/collecttion?type=size&id=${i}&name=${e.name}`">
+              {{ e.name }} </router-link
+            >,
+          </small>
         </span>
       </div>
     </div>
@@ -183,6 +193,7 @@ import Headerr from "@/components/Header.vue";
 import zoomImageVue from "@/components/zoomImage.vue";
 import Footer1 from "@/components/Footer1.vue";
 import BlogSlideVue from "@/components/BlogSlide.vue";
+import { userStore } from "@/stores/counter";
 export default {
   name: "DeTail",
   components: {
@@ -196,7 +207,13 @@ export default {
     const data = ref([]);
     const imgSelect = ref(null);
     const isActive = ref();
-
+    const user = userStore();
+    const formatVND = (number) => {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    };
     const getproductById = async (id) => {
       // console.log("result", route.currentRoute.value.params.id);
 
@@ -209,24 +226,43 @@ export default {
 
       // alert("ayyyy");
     };
-    const buttonAnimation = ref("");
-    const addCard = () => {
-      buttonAnimation.value = "ay";
-      setTimeout(function () {
-        buttonAnimation.value = "";
-      }, 800);
+
+    // add cart
+    var timeoutID = null;
+    var sl = 0;
+    const addCart = (product) => {
+      sl++;
+      if (timeoutID) {
+        // Nếu đã có timeoutID tồn tại, hủy bỏ timeout hiện tại
+        clearTimeout(timeoutID);
+      }
+      timeoutID = setTimeout(() => {
+        user.addCartItem(product, sl).then(() => {
+          getproductById(route);
+        });
+        sl = 0;
+      }, 1000);
     };
+    /////
+    const buttonAnimation = ref("");
+    // const addCard = () => {
+    //   buttonAnimation.value = "ay";
+    //   setTimeout(function () {
+    //     buttonAnimation.value = "";
+    //   }, 800);
+    // };
     const changeImg = (e) => {
       data.value.mainImg = e.url;
     };
     getproductById(route);
     return {
       data,
-      addCard,
+      addCart,
       buttonAnimation,
       imgSelect,
       isActive,
       changeImg,
+      formatVND,
     };
   },
 };

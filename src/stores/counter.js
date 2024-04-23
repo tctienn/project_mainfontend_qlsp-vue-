@@ -1,8 +1,9 @@
 // import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { login } from '@/api/ApiLogin'
-import { getCookie } from '@/api/CookieFuntion'
-import { get_cart_byIdUser, post_add_cartItem } from '@/api/ApiUser'
+import { deleteCookie, getCookie } from '@/api/CookieFuntion'
+import { get_cart_byIdUser, get_check_cartItem, post_add_cartItem } from '@/api/ApiUser'
+import { toast } from "vue3-toastify";
 // import { getCookie } from '@/api/CookieFuntion'
 
 // export const useCounterStore = defineStore('counter', () => {
@@ -28,6 +29,13 @@ import { get_cart_byIdUser, post_add_cartItem } from '@/api/ApiUser'
 //   }, 2000);
 // };
 
+const notify = (text, type) => { // thông báo
+  toast(text, {
+    type: type,
+    autoClose: 3000,
+    dangerouslyHTMLString: true,
+  });
+};
 
 
 const getCart = async (id) => {
@@ -69,13 +77,64 @@ export const userStore = defineStore("login", {
 
     },
 
+    async reload() { // dùng để bắt một số trường hợp lỗi để trả về dữ liệu cũ
+      try {
+        console.log('load lại dữ liệu user')
+        if (this.user) {
+          this.cart = await getCart(this.user.id);
+        }
+      } catch (error) {
+        console.error('load dữ liệu er', error);
+      }
+    },
+    async pay() {
+      if (getCookie('login_token_qlsp') == null) {
+        return notify("yêu cầu đăng nhập để có thể trải nghiệp các tính năng", "warning")
+      }
+      // await pay().then((data) => {
+      //   console.log(data)
+      //   // window.location.href = data.data.url;
+      // })
+      this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+    },
+
     async addCartItem(product, quantity) {
+
+      if (getCookie('login_token_qlsp') == null) {
+        return notify("yêu cầu đăng nhập để có thể trải nghiệp các tính năng", "warning")
+      }
+
+      await get_check_cartItem(getCookie('login_token_qlsp').user.id, product.id)
+
       await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
       this.cart = await getCart(getCookie('login_token_qlsp').user.id)
 
       // return response.data.user
-      console.log("addcartitem", this.cart)
+      notify("Thêm " + quantity + "  " + product.name + " vào giỏ hảng thành công", "success")
+      // console.log("addcartitem", this.cart)
 
+    },
+    async updateCartItem(product, quantity) {
+
+      if (getCookie('login_token_qlsp') == null) {
+        return notify("yêu cầu đăng nhập để có thể trải nghiệp các tính năng", "warning")
+      }
+
+
+
+      await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
+      this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+
+      // return response.data.user
+      notify("cập nhật " + quantity + "  " + product.name + " vào giỏ hảng thành công", "success")
+      // console.log("addcartitem", this.cart)
+
+    },
+
+    logout() {
+      deleteCookie("login_token_qlsp");
+      this.cart = null
+      this.user = null
     },
 
     demo() {

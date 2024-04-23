@@ -21,9 +21,9 @@
                   </router-link>
                 </div>
               </td>
-              <td style="width: max-content; font-size: 90%">
+              <!-- <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">Của Hàng</div>
-              </td>
+              </td> -->
               <td style="width: max-content; font-size: 90%">
                 <router-link
                   :to="'/collecttion/'"
@@ -32,9 +32,9 @@
                   <div class="listMenu">Bộ sưu tập</div>
                 </router-link>
               </td>
-              <td style="width: max-content; font-size: 90%">
+              <!-- <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">Trang</div>
-              </td>
+              </td> -->
               <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">Blog</div>
               </td>
@@ -103,13 +103,13 @@
               <router-link to="/login" v-if="user.getUserStore == null">
                 <Icon icon="et:profile-female" width="20px"></Icon>
               </router-link>
+              <router-link v-else to="/profile">
+                <img
+                  src="/proflie.gif"
+                  style="width: 25px; aspect-ratio: 2/2; border-radius: 5px"
+                  :title="user.getUserStore.userName"
+              /></router-link>
 
-              <img
-                v-else
-                src="/proflie.gif"
-                style="width: 25px; aspect-ratio: 2/2; border-radius: 5px"
-                :title="user.getUserStore.userName"
-              />
               <small
                 style="
                   position: absolute;
@@ -141,7 +141,9 @@
               ></div> -->
             </div>
             <div style="position: relative">
-              <v-icon class="icon" size="20px">mdi-cart-arrow-down</v-icon>
+              <router-link to="/cart-user">
+                <v-icon class="icon" size="20px">mdi-cart-arrow-down</v-icon>
+              </router-link>
               <div
                 v-if="!(user.getUserStore == null)"
                 style="

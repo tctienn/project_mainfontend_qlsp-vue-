@@ -240,6 +240,7 @@ import {
   get_sizes,
   get_tags,
 } from "@/api/ApiRequest";
+import { useRoute } from "vue-router";
 
 export default {
   name: "ColleCttion",
@@ -260,6 +261,17 @@ export default {
     const sizes = ref([]);
     const searchText = ref("");
 
+    try {
+      if (useRoute().query.type != null) {
+        select.value = {
+          type: useRoute().query.type,
+          id: +useRoute().query.id + 1,
+          name: useRoute().query.name,
+        };
+      }
+    } catch (err) {
+      console.log("loi param", err);
+    }
     var param = ref({
       // pram nạp cho các funtion request filter
       id: select.value.id,

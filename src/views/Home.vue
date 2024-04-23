@@ -144,6 +144,7 @@ import Product4x3Vue from "../components/Product4x3s.vue";
 import { ref } from "vue";
 
 import Footer1 from "../components/Footer1.vue";
+// import { toast } from "vue3-toastify";
 
 export default {
   name: "HomE",

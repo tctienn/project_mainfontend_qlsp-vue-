@@ -38,7 +38,7 @@
       </div>
       <div style="width: 66%; padding: 10px 0 0 20px">
         <h4>{{ e.alias }}</h4>
-        <small>{{ e.gia }}</small>
+        <small>{{ formatVND(e.gia) }}</small>
         <br />
         <v-icon
           v-for="(e2, i2) in 5"
@@ -68,6 +68,7 @@
               background-color: rgb(179, 179, 179);
               border: solid 0.5 blrgb(80, 80, 80) ack;
             "
+            @click="addCart(e)"
           >
             Thêm vào giỏ hàng
           </button>
@@ -88,6 +89,7 @@
 </template>
     
 <script>
+import { userStore } from "@/stores/counter";
 import { ref, toRef } from "vue";
 
 export default {
@@ -96,7 +98,14 @@ export default {
   emits: ["page"],
   setup(props, contex) {
     const datas = toRef(props, "data");
+    const user = userStore();
     const page = ref(1);
+    const formatVND = (number) => {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    };
     const checkDate = (createAt) => {
       let now = new Date();
       let createdAtDate = new Date(createAt);
@@ -112,10 +121,24 @@ export default {
         return "new";
       }
     };
+    // add cart
+    var timeoutID = null;
+    var sl = 0;
+    const addCart = (product) => {
+      sl++;
+      if (timeoutID) {
+        // Nếu đã có timeoutID tồn tại, hủy bỏ timeout hiện tại
+        clearTimeout(timeoutID);
+      }
+      timeoutID = setTimeout(() => {
+        user.addCartItem(product, sl);
+        sl = 0;
+      }, 1000);
+    };
     const changePage = () => {
       contex.emit("page", page.value);
     };
-    return { datas, page, changePage, checkDate };
+    return { datas, page, changePage, checkDate, formatVND, addCart };
   },
 };
 </script>

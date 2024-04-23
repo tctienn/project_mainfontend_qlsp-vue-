@@ -6,6 +6,9 @@ import ErroPage from '@/views/ErroPage.vue'
 import DetailBlog from '@/views/DetailBlog.vue';
 import collecttion from '@/views/Collecttion.vue'
 import Login from '@/views/login.vue';
+import CartUser from '@/views/CartUser.vue';
+import PayVNPay from '@/views/PayVNPay.vue';
+import Profile from '@/views/Profile.vue';
 
 
 const router = createRouter({
@@ -41,11 +44,27 @@ const router = createRouter({
       name: 'login',
       component: Login
     },
+    {
+      path: '/cart-user',
+      name: 'cart',
+      component: CartUser
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: PayVNPay
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
+    },
 
-    
-    { 
-        path: '/:pathMatch(.*)*', 
-        component: ErroPage 
+
+
+    {
+      path: '/:pathMatch(.*)*',
+      component: ErroPage
     } // lỗi đườn dẫn
   ]
 })

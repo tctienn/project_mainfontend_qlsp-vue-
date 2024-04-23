@@ -3,7 +3,7 @@
     <div class="product">
       <div class="productitem" v-for="(e, i) in data" :key="i">
         <div class="imgItem">
-          <router-link :to="'product/detail/' + e.id">
+          <router-link :to="'/product/detail/' + e.id">
             <img
               :src="e.mainImg"
               alt="imgproduct"
@@ -51,7 +51,7 @@
               >mdi-star-outline</v-icon
             >
           </div>
-          <div>{{ e.gia }}</div>
+          <div>{{ formatVND(e.gia) }}</div>
         </div>
       </div>
     </div>
@@ -83,7 +83,12 @@ export default {
     });
     const page = ref(0);
     const user = userStore();
-
+    const formatVND = (number) => {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    };
     // add cart
     var timeoutID = null;
     var sl = 0;
@@ -96,7 +101,7 @@ export default {
       timeoutID = setTimeout(() => {
         user.addCartItem(product, sl);
         sl = 0;
-      }, 2000);
+      }, 1000);
     };
     const getproducts = async (paramProduct) => {
       const result = await get_products(paramProduct);
@@ -181,6 +186,7 @@ export default {
       page,
       user,
       addCart,
+      formatVND,
     };
   },
 };
