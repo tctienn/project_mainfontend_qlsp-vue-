@@ -11,8 +11,8 @@ import PayVNPay from '@/views/PayVNPay.vue';
 import Profile from '@/views/Profile.vue';
 
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+const routes = createRouter({
+  // history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     // {
     //   path: '/',
@@ -65,8 +65,11 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       component: ErroPage
-    } // lỗi đườn dẫn
+    } // lỗi đườn dẫn,
   ]
 })
-
+const router = createRouter({
+  history: createWebHistory(),
+  routes: routes
+})
 export default router
