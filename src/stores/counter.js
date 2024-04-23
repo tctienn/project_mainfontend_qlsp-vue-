@@ -38,13 +38,7 @@ const notify = (text, type) => { // thông báo
 };
 
 
-// const getCart = async (id) => {
-//   console.log('chạy get cart')
-//   const response = await get_cart_byIdUser(id)
-//   return response.data
 
-// }
-// const cart = (getCookie('login_token_qlsp') ? (await getCart(getCookie('login_token_qlsp').user.id)) : null)
 export const userStore = defineStore("login", {
   state: () => {
     return {
