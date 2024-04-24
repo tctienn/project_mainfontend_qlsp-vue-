@@ -1,11 +1,12 @@
 
 import axios from 'axios';
+import { domain } from './CookieFuntion';
 // import {  taocock } from './cookie';
 // import { menu_pina } from '@/pinia/Store';
 
 
 
-const url = 'https://aaaaaaaaaaassssssss-production.up.railway.app/public'
+const url = domain + '/public'
 
 
 
@@ -43,7 +44,6 @@ apiUser.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-// export const get_product = 'http://localhost:8080/product/get-product?page=0&size=2&sort=id,asc'
 export const get_products = (data) => {
     return apiUser.get(`/product/get-product`, {
         params: {

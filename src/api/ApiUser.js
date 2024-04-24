@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getCookie } from "./CookieFuntion";
+import { domain, getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 import { userStore } from "@/stores/counter";
 
-const url = 'https://aaaaaaaaaaassssssss-production.up.railway.app/user'
+const url = domain + '/user'
 
 
 const notify = (text, type) => { // thông báo
