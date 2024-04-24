@@ -3,7 +3,7 @@ import { getCookie } from "./CookieFuntion";
 import { toast } from "vue3-toastify";
 import { userStore } from "@/stores/counter";
 
-const url = 'http://localhost:8080/user'
+const url = 'https://aaaaaaaaaaassssssss-production.up.railway.app/user'
 
 
 const notify = (text, type) => { // thông báo
