@@ -65,7 +65,7 @@
         <br />
         <hr style="width: 80%; margin: auto" />
         <div style="width: 80%; margin: auto; padding: 20px">
-          <b style="float: left">Item: {{ CartUserS.getCartStore.length }}</b>
+          <b style="float: left">Item: {{ CartUserS.getCartStore?.length }}</b>
           <b style="float: right">Tổng tiền: {{ formatVND(sum) }}</b>
         </div>
         <br />
@@ -74,7 +74,7 @@
         <table style="width: 100%" cellspacing="0">
           <tr>
             <td style="text-align: start">
-              <b> {{ CartUserS.getCartStore.length }} sản phẩm:</b>
+              <b> {{ CartUserS.getCartStore?.length }} sản phẩm:</b>
             </td>
             <td style="text-align: end">{{ formatVND(sum) }}</td>
           </tr>
@@ -133,6 +133,7 @@ export default {
     const CartUserS = userStore();
 
     var timeoutID = null;
+
     const sum = ref(
       user
         ? CartUserS.getCartStore?.reduce(
@@ -158,10 +159,11 @@ export default {
               accumulator + currentValue.quantity * currentValue.price,
             0
           );
+          console.log("then", userStore().getCartStore);
         });
 
         // console.log("data", data);
-      }, 2000);
+      }, 800);
       //   console.log("id" + data.id + "quantity" + data.quantity);
     };
 

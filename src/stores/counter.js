@@ -99,12 +99,21 @@ export const userStore = defineStore("login", {
         return notify("yêu cầu đăng nhập để có thể trải nghiệp các tính năng", "warning")
       }
 
-      await get_check_cartItem(getCookie('login_token_qlsp').user.id, product.id)
 
-      await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
+      try {
+        await get_check_cartItem(getCookie('login_token_qlsp').user.id, product.id)
+        await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
+      } catch (err) {
+        get_cart_byIdUser(getCookie('login_token_qlsp').user.id).then(data => this.cart = data.data)
+        return
+
+      }
+
+
+
       // this.cart = await getCart(getCookie('login_token_qlsp').user.id)
-      this.cart = await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).data
-
+      // this.cart = await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).data
+      get_cart_byIdUser(getCookie('login_token_qlsp').user.id).then(data => this.cart = data.data)
       // return response.data.user
       notify("Thêm " + quantity + "  " + product.name + " vào giỏ hảng thành công", "success")
       // console.log("addcartitem", this.cart)
@@ -117,11 +126,19 @@ export const userStore = defineStore("login", {
       }
 
 
+      try {
+        await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
+      } catch (err) {
+        await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).then(data => this.cart = data.data)
+        console.log("reduce", userStore().getCartStore);
 
-      await post_add_cartItem(getCookie('login_token_qlsp').user.id, product.id, quantity)
+        return
+      }
 
-      this.cart = await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).data
+
+      // this.cart = await get_cart_byIdUser(getCookie('login_token_qlsp').user.id).data
       // this.cart = await getCart(getCookie('login_token_qlsp').user.id)
+      get_cart_byIdUser(getCookie('login_token_qlsp').user.id).then(data => this.cart = data.data)
 
       // return response.data.user
       notify("cập nhật " + quantity + "  " + product.name + " vào giỏ hảng thành công", "success")
