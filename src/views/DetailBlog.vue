@@ -14,8 +14,8 @@
       <router-link to="/" style="text-decoration: none">Home</router-link>/Blog
     </div>
   </div>
-  <div style="width: 90%; margin: auto; display: flex">
-    <div style="width: 70%; border: solid 1px black; position: relative">
+  <div style="width: 90%; margin: auto; display: flex; margin-top: 10px">
+    <div style="width: 70%; position: relative">
       <img :src="data.imgMain" style="width: 100%; aspect-ratio: 24 / 14" />
 
       <small>
@@ -55,10 +55,16 @@
         <div
           v-for="(e, i) in listBlog"
           :key="i"
-          style="display: flex; margin-bottom: 10px"
+          style="
+            display: flex;
+            margin-bottom: 10px;
+            box-shadow: 3px 4px 8px -2px black;
+            border-radius: 7px;
+            padding: 7px 0 0 7px;
+          "
         >
           <div style="width: 50px; aspect-ratio: 2/2; margin-right: 10px">
-            <img style="width: 100%; height: 100%" :src="e.imgBackGround" />
+            <img style="width: 100%; height: 100%" :src="e.blog.imgMain" />
           </div>
           <div style="font-size: 14px">{{ e.blog.title }}</div>
         </div>

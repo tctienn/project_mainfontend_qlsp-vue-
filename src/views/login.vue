@@ -111,7 +111,7 @@
           v-model="input.gmail"
         />
         <br />
-        <button class="button">Create Account</button>
+        <button class="button" @click="createAccount">Create Account</button>
         <small> if your have account </small>
         <button class="button" @click="form = !form">LOGIN</button>
       </div>
@@ -121,6 +121,7 @@
     
 <script>
 // import { getCookie } from "@/api/CookieFuntion";
+import { signup } from "@/api/ApiLogin";
 import router from "@/router";
 import { userStore } from "@/stores/counter";
 import { ref } from "vue";
@@ -149,7 +150,38 @@ export default {
           router.push("/");
         });
     };
-    return { form, user, login, input };
+    const createAccount = () => {
+      const regexusername = /^[a-z0-9]{3,16}$/;
+      if (!regexusername.test(input.value.username)) {
+        alert(
+          "tên người dùng yêu cầu không có ký tự đặc biệt và độ dài từ 3-16 ký tự"
+        );
+        return;
+      }
+      const regexsdt = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+      if (!regexsdt.test(input.value.sdt)) {
+        alert("số điẹne thoại không hợp lệ yêu cầu nhập lại");
+        return;
+      }
+      const regexGmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      if (!regexGmail.test(input.value.gmail)) {
+        alert("định dạng gmail không hợp lệ yêu cầu nhập lại");
+        return;
+      }
+      signup({
+        userName: input.value.username,
+        passWord: input.value.password,
+        sdt: input.value.sdt,
+        gmail: input.value.gmail,
+      }).then(
+        () =>
+          alert(
+            "vui lòng truy cập gmail đã đăng ký để xác nhận tài khoản sau đó quay lại đây đăng nhập"
+          ),
+        (form.value = !form.value)
+      );
+    };
+    return { form, user, login, input, createAccount };
   },
 };
 </script>

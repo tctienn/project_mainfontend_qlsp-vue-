@@ -76,7 +76,7 @@ export const get_blog_byrender_by_type = (type, size) => {
 
             page: 0,
             size: size,
-            sort: 'id,asc',
+            sort: 'top,asc',
             type: type
         }
     })

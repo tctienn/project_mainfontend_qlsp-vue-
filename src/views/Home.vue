@@ -1,7 +1,11 @@
 <template>
   <Headerr @ay="search" />
   <div>
-    <v-carousel show-arrows="hover" style="width: 100%; height: 72vh">
+    <v-carousel
+      v-if="isDataLoaded"
+      show-arrows="hover"
+      style="width: 100%; height: 72vh"
+    >
       <v-carousel-item cover v-for="(item, i) in items" :key="i">
         <div id="caroselitem">
           <div
@@ -15,16 +19,17 @@
           >
             <div style="width: 50%; padding-left: 10px; margin-top: 100px">
               <b>
-                <small>{{ item.title1 }}</small>
+                <small>{{ item.blog.title }}</small>
               </b>
-              <h1>{{ item.title2 }}</h1>
+              <h1>{{ item.blog.conten }}</h1>
               <br />
-              <button class="button">Buy now</button>
+
+              <router-link to="collecttion" style="color: rgb(0, 0, 0)">
+                <button class="button">Buy now</button>
+              </router-link>
             </div>
-            <div class="imgslide"></div>
-            <!-- <img
-              src="https://flone.jamstacktemplates.dev/assets/img/slider/single-slide-hm1-2.png"
-            /> -->
+            <!-- <div class="imgslide"></div> -->
+            <img class="imgslide" :src="item.blog.imgBackGround" />
           </div>
         </div>
       </v-carousel-item>
@@ -138,10 +143,11 @@
 </template>
     
 <script>
-import { get_blog_byrender } from "@/api/ApiRequest";
+import { get_blog_byrender, get_blog_byrender_by_type } from "@/api/ApiRequest";
 import Headerr from "../components/Header.vue";
 import Product4x3Vue from "../components/Product4x3s.vue";
 import { ref } from "vue";
+// import { nextTick } from "vue";
 
 import Footer1 from "../components/Footer1.vue";
 // import { toast } from "vue3-toastify";
@@ -150,30 +156,18 @@ export default {
   name: "HomE",
   components: { Headerr, Product4x3Vue, Footer1 },
   setup() {
-    const items = [
-      {
-        title1: "smart products",
-        title2: "Summer Offer2024 Collecttion",
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-      },
-      {
-        title1: "smart products",
-        title2: "Summer Offer2024 Collecttion",
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-      },
-      {
-        title1: "smart products",
-        title2: "Summer Offer2024 Collecttion",
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-      },
-      {
-        title1: "smart products",
-        title2: "Summer Offer2024 Collecttion",
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-      },
-    ];
+    const items = ref();
+    const isDataLoaded = ref(false);
+    const getSlide = async () => {
+      const respon = await get_blog_byrender_by_type(2, 7);
 
-    console.log("chạy home");
+      items.value = respon.data.content;
+      // await nextTick();
+      isDataLoaded.value = true;
+      // items.value = { ...items.value };
+      console.log("item", items.value[0].blog.title);
+    };
+    getSlide();
 
     const datablog = ref([]);
     const paramBlog = {
@@ -214,6 +208,7 @@ export default {
       datablog,
       search,
       searchProp,
+      isDataLoaded,
     };
   },
 };
@@ -230,7 +225,7 @@ export default {
   /* display: flex; */
 }
 .imgslide {
-  width: 50%;
+  width: 60%;
   height: 100%;
   position: relative;
   animation: img_dow 2s;
@@ -278,6 +273,9 @@ export default {
 .button:hover::before {
   width: 100%;
   left: 0;
+}
+.button:hover {
+  color: rgb(244, 219, 236);
 }
 .body {
   /* border: solid 1px black; */

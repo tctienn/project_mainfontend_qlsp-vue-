@@ -79,7 +79,7 @@ export const login = (data) => {
 }
 
 export const signup = (data) => {
-    return apiUser.post(`login`, {
+    return apiUser.post(`signup`, {
         userName: data.userName,
         passWord: data.passWord,
         sdt: data.sdt,
