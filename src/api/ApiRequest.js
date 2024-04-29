@@ -55,12 +55,13 @@ export const get_products = (data) => {
     })
 }
 export const get_blog_byrender = (data) => {
-    return apiUser.get(`blog/get-blog-by-render`, {
+    return apiUser.get(`blog/get-blog-by-render-type`, {
         params: {
 
-            page: (data.page),
-            size: data.size,
-            sort: 'id,asc'
+            page: 0,
+            size: 3,
+            sort: 'top,asc',
+            type: 3
         }
     })
 }

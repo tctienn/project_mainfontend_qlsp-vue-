@@ -61,13 +61,15 @@
             box-shadow: 3px 4px 8px -2px black;
             border-radius: 7px;
             padding: 7px 0 0 7px;
+
+            cursor: pointer;
           "
+          @click="changeBlog(e.blog.id)"
         >
-          <router-link :to="`/blog/detail/${e.blog.id}`">
-            <div style="width: 50px; aspect-ratio: 2/2; margin-right: 10px">
-              <img style="width: 100%; height: 100%" :src="e.blog.imgMain" />
-            </div>
-          </router-link>
+          <div style="width: 50px; aspect-ratio: 2/2; margin-right: 10px">
+            <img style="width: 100%; height: 100%" :src="e.blog.imgMain" />
+          </div>
+
           <div style="font-size: 14px">{{ e.blog.title }}</div>
         </div>
       </div>
@@ -81,9 +83,10 @@
 import { get_blog_by_id, get_blog_byrender_by_type } from "@/api/ApiRequest";
 import HeaderVue from "@/components/Header.vue";
 import Footer1 from "@/components/Footer1.vue";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 // import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
+// import router from "@/router";
 
 export default {
   name: "DeTailblog",
@@ -91,7 +94,7 @@ export default {
   setup() {
     const data = ref({});
     const listBlog = ref([]);
-    const route = useRouter().currentRoute.value.params.id;
+    const route = ref(useRouter().currentRoute.value.params.id);
     const getBlogById = async (id) => {
       // console.log("result", route.currentRoute.value.params.id);
       const result = await get_blog_by_id(id);
@@ -111,11 +114,14 @@ export default {
       let splitDate = inputDate.split("-");
       return `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
     };
-    onMounted(() => {
-      getBlogById(route);
-      getBlogByType();
-    });
-    return { data, convertDateFormat, listBlog };
+
+    getBlogById(route.value);
+    getBlogByType();
+    const changeBlog = (id) => {
+      // router.push(`/blog/detail/${id}`);
+      window.location.href = `/blog/detail/${id}`;
+    };
+    return { data, convertDateFormat, listBlog, changeBlog };
   },
 };
 </script>
