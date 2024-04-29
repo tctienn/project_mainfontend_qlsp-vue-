@@ -65,6 +65,9 @@
         <router-link to="/">
           <button class="button" style="width: max-content">Goto Home</button>
         </router-link>
+        <router-link to="/changePassword">
+          <small>fogot password ?</small>
+        </router-link>
       </div>
       <div
         v-else

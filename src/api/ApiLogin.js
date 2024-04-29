@@ -86,3 +86,7 @@ export const signup = (data) => {
         gmail: data.gmail
     })
 }
+
+export const post_changePassword = (userName, gmail, password) => {
+    return apiUser.post(`public/user/changePassword?userName=${userName}&gmail=${gmail}&password=${password}`)
+}

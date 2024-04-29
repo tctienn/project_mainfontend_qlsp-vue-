@@ -12,7 +12,7 @@
           </router-link>
         </td>
         <td style="width: 40%">
-          <table style="width: 75%; margin: auto">
+          <table style="width: 40%; margin: auto">
             <tr>
               <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">
@@ -35,12 +35,12 @@
               <!-- <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">Trang</div>
               </td> -->
-              <td style="width: max-content; font-size: 90%">
+              <!-- <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">Blog</div>
-              </td>
-              <td style="width: max-content; font-size: 90%">
+              </td> -->
+              <!-- <td style="width: max-content; font-size: 90%">
                 <div class="listMenu">Liên hệ</div>
-              </td>
+              </td> -->
             </tr>
           </table>
         </td>
@@ -123,7 +123,7 @@
             </div>
 
             <div style="position: relative">
-              <v-icon class="icon" size="20px">mdi-heart-outline</v-icon>
+              <!-- <v-icon class="icon" size="20px">mdi-heart-outline</v-icon> -->
               <!-- <div
                 x
                 style="

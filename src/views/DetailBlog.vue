@@ -63,9 +63,11 @@
             padding: 7px 0 0 7px;
           "
         >
-          <div style="width: 50px; aspect-ratio: 2/2; margin-right: 10px">
-            <img style="width: 100%; height: 100%" :src="e.blog.imgMain" />
-          </div>
+          <router-link :to="`/blog/detail/${e.blog.id}`">
+            <div style="width: 50px; aspect-ratio: 2/2; margin-right: 10px">
+              <img style="width: 100%; height: 100%" :src="e.blog.imgMain" />
+            </div>
+          </router-link>
           <div style="font-size: 14px">{{ e.blog.title }}</div>
         </div>
       </div>
