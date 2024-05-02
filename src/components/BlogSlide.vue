@@ -37,7 +37,7 @@ export default {
   setup() {
     const data = ref([]);
     const getBlogRender = async () => {
-      const result = await get_blog_byrender_by_type(2, 5);
+      const result = await get_blog_byrender_by_type(3, 5);
       //   console.log("result", result.data.content);
       data.value = result.data.content;
     };
