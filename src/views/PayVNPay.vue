@@ -46,6 +46,14 @@
                 required
                 value="thanh toán hóa đơn shop"
               />
+              <input
+                type="hidden"
+                class="form-control"
+                id="timestamp"
+                name="timestamp"
+                v-model="timestamp"
+                required
+              />
 
               <button type="submit" @click="submit" class="btn btn-primary">
                 Thanh toán
@@ -77,8 +85,8 @@ export default {
     let minutes = ("0" + date.getMinutes()).slice(-2);
     let seconds = ("0" + date.getSeconds()).slice(-2);
 
-    let timestamp = year + month + day + hours + minutes + seconds;
-    console.log("time", timestamp);
+    let timestamp = ref(year + month + day + hours + minutes + seconds);
+    // console.log("time", timestamp);
     //////////////
     const user = getCookie("login_token_qlsp") ? true : false;
     const submitOder = ref();
@@ -118,6 +126,7 @@ export default {
       user,
       submitOder,
       formatVND,
+      timestamp,
     };
   },
 };
