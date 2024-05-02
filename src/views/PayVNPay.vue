@@ -68,6 +68,18 @@ import { ref } from "vue";
 export default {
   name: "PaSy",
   setup() {
+    /////////////////////
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let day = ("0" + date.getDate()).slice(-2);
+    let hours = ("0" + date.getHours()).slice(-2);
+    let minutes = ("0" + date.getMinutes()).slice(-2);
+    let seconds = ("0" + date.getSeconds()).slice(-2);
+
+    let timestamp = year + month + day + hours + minutes + seconds;
+    console.log("time", timestamp);
+    //////////////
     const user = getCookie("login_token_qlsp") ? true : false;
     const submitOder = ref();
     pay().then((data) => {
@@ -85,7 +97,7 @@ export default {
     );
     const address = ref("");
     const idUser = ref(user ? getCookie("login_token_qlsp").user.id : 0); // Giá trị này cần được cung cấp từ nơi sử dụng component
-    const orderInfo = ref("Thanh toan don hang 2923");
+    const orderInfo = ref("Thanh toan don hang ");
     const submit = () => {
       //   submitOrder(amount, idUser, orderInfo, address).then((data) => {
       //     console.log(data);
