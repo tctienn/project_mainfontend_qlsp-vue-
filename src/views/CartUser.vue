@@ -58,6 +58,9 @@
                 <br />
                 {{ formatVND(e.price * e.quantity) }}
               </td>
+              <td>
+                <button @click="clickDeleteCart(e.product.id)">xóa</button>
+              </td>
             </tr>
           </table>
         </div>
@@ -120,6 +123,7 @@ import { userStore } from "@/stores/counter";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import router from "@/router";
+import { post_delete_cart } from "@/api/ApiUser";
 
 export default {
   name: "CartUser",
@@ -174,6 +178,15 @@ export default {
       }).format(number);
     };
 
+    const clickDeleteCart = (idProduct) => {
+      if (!getCookie("login_token_qlsp")) {
+        alert("phiên đăng nhập hết hạn yêu cầu đăng nhập lại");
+        return;
+      }
+      post_delete_cart(getCookie("login_token_qlsp").user.id, idProduct).then(
+        () => userStore().reload()
+      );
+    };
     return {
       user,
       CartUserS,
@@ -181,6 +194,7 @@ export default {
       sum,
       formatVND,
       pay,
+      clickDeleteCart,
     };
   },
 };

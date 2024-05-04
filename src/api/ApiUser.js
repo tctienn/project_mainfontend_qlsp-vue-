@@ -82,6 +82,9 @@ export const post_add_cartItem = (idUser, idProduct, quantity) => {
 export const get_check_cartItem = (idUser, idProduct) => {
     return apiUser.get(`cart/check-cartItem?idUser=${idUser}&idProduct=${idProduct}`)
 }
+export const post_delete_cart = (idUser, idProduct) => {
+    return apiUser.post(`cart/delete-cartItem?idUser=${idUser}&idProduct=${idProduct}`)
+}
 
 export const pay = () => {
     return apiUser.get(`pay`)
