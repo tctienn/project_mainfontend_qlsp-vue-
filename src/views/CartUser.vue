@@ -154,6 +154,10 @@ export default {
     const changequantity = (data) => {
       if (data.quantity <= 0) {
         notify(" số lượng sản phẩm không hợp lệ", "error");
+        get_cart_byIdUser(getCookie("login_token_qlsp").user.id).then((e) =>
+          userStore().reload(e.data)
+        );
+
         return;
       }
       if (timeoutID) {
