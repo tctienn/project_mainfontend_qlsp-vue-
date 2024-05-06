@@ -168,7 +168,7 @@ export default {
       }
       if (props.searchEvem.check == true) {
         // console.log(props.searchEvem.text);
-        console.log("search");
+        console.log("search", props.searchEvem.text);
         getProductByNmae({
           name: props.searchEvem.text,
           page: 0,
