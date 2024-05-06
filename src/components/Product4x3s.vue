@@ -113,6 +113,7 @@ export default {
 
       // alert("ayyyy");
     };
+    getproducts({ page: 0, size: 12 });
     const getProductByNmae = async (param) => {
       const result = await get_products_by_name_containing(param);
       data.value = result.data.content;
@@ -164,7 +165,7 @@ export default {
       }
       if (props.searchEvem.check == true) {
         // console.log(props.searchEvem.text);
-        console.log("search", props.searchEvem.text);
+        console.log("search", props.searchEvem);
         getProductByNmae({
           name: props.searchEvem.text,
           page: 0,
@@ -176,9 +177,7 @@ export default {
       page.value = 1;
     });
 
-    onMounted(() => {
-      getproducts({ page: 0, size: 12 });
-    });
+    onMounted(() => {});
     watch;
     return {
       data,
