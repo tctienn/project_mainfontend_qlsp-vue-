@@ -118,7 +118,7 @@ export default {
       data.value = result.data.content;
 
       totalPages.value = result.data.totalPages;
-      console.log(result.data.content);
+      console.log("search", data.value);
     };
 
     const checkDate = (createAt) => {
