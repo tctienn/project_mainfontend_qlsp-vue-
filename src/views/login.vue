@@ -200,7 +200,7 @@ export default {
 
 .lefts {
   width: 60%;
-  background-image: url("./ay.jpg");
+  background-image: url("@/ay.jpg");
   background-size: 120% 100%;
   position: relative;
   z-index: 1;
