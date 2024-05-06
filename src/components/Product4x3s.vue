@@ -116,9 +116,9 @@ export default {
     const getProductByNmae = async (param) => {
       const result = await get_products_by_name_containing(param);
       data.value = result.data.content;
-      data.value = { ...data.value };
+
       totalPages.value = result.data.totalPages;
-      // console.log(data.value);
+      console.log(result.data.content);
     };
 
     const checkDate = (createAt) => {
