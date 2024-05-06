@@ -116,7 +116,7 @@
 </template>
     
 <script >
-import { getCookie } from "@/api/CookieFuntion";
+import { getCookie, notify } from "@/api/CookieFuntion";
 import Footer1 from "@/components/Footer1.vue";
 import Header1 from "@/components/Header.vue";
 import { userStore } from "@/stores/counter";
@@ -152,6 +152,10 @@ export default {
       router.push("/pay");
     };
     const changequantity = (data) => {
+      if (data.quantity <= 0) {
+        notify(" số lượng sản phẩm không hợp lệ", "error");
+        return;
+      }
       if (timeoutID) {
         // Nếu đã có timeoutID tồn tại, hủy bỏ timeout hiện tại
         clearTimeout(timeoutID);
@@ -183,12 +187,12 @@ export default {
         alert("phiên đăng nhập hết hạn yêu cầu đăng nhập lại");
         return;
       }
+
+      await post_delete_cart(getCookie("login_token_qlsp").user.id, idProduct);
       const cartrespon = await get_cart_byIdUser(
         getCookie("login_token_qlsp").user.id
       );
-      post_delete_cart(getCookie("login_token_qlsp").user.id, idProduct).then(
-        () => userStore().reload(cartrespon.data)
-      );
+      userStore().reload(cartrespon.data);
     };
     return {
       user,

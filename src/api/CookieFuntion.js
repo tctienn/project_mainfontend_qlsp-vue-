@@ -1,3 +1,5 @@
+import { toast } from "vue3-toastify";
+
 export const domain = 'https://backendqlspayay.up.railway.app'
 // export const domain = 'http://localhost:8080'
 
@@ -40,3 +42,11 @@ export function deleteCookie(name) {
     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
 }
+
+export const notify = (text, type) => { // thông báo
+  toast(text, {
+    type: type,
+    autoClose: 2000,
+    dangerouslyHTMLString: true,
+  });
+};
