@@ -9,14 +9,7 @@
         >
           <img :src="e.blog.imgBackGround" style="width: 100%; height: 60%" />
 
-          <div
-            style="
-              width: 100%;
-              text-align: center;
-              padding: 20px;
-              background-color: rgb(207, 207, 207);
-            "
-          >
+          <div style="width: 100%; text-align: center; padding: 20px">
             <h4>{{ e.blog.title }}</h4>
             <small>by: {{ e.blog.nameCreateUser }}</small>
           </div>
