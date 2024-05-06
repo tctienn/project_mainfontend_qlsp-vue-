@@ -2,10 +2,7 @@
   <v-sheet class="mx-auto" elevation="0" max-width="100%">
     <v-slide-group class="pa-o" show-arrows>
       <v-slide-group-item v-for="(e, i) in data" :key="i">
-        <div
-          class="ma-2"
-          style="width: 300px; height: 300px; border: solid 1px red"
-        >
+        <div class="ma-2" style="width: 300px; height: 300px">
           <img
             :src="e.blog.imgBackGround"
             style="width: 100%; height: 60%; border: solid 1px black"
@@ -13,10 +10,10 @@
 
           <div
             style="
-              width: 100%;
-              border: solid 1px black;
+              width: 80%;
               text-align: center;
               padding: 20px;
+              margin-top: -20px;
             "
           >
             <h4>{{ e.blog.title }}</h4>
