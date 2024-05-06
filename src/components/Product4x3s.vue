@@ -114,9 +114,12 @@ export default {
       // alert("ayyyy");
     };
     const getProductByNmae = async (param) => {
-      const result = await get_products_by_name_containing(param);
-      data.value = result.data.content;
-      totalPages.value = result.data.totalPages;
+      const result = await get_products_by_name_containing(param).then(
+        (result) => (data.value = result.data.content),
+        (totalPages.value = result.data.totalPages)
+      );
+      // data.value = result.data.content;
+      // totalPages.value = result.data.totalPages;
       // console.log(data.value);
     };
 
