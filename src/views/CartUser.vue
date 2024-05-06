@@ -123,7 +123,7 @@ import { userStore } from "@/stores/counter";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import router from "@/router";
-import { post_delete_cart } from "@/api/ApiUser";
+import { get_cart_byIdUser, post_delete_cart } from "@/api/ApiUser";
 
 export default {
   name: "CartUser",
@@ -178,13 +178,16 @@ export default {
       }).format(number);
     };
 
-    const clickDeleteCart = (idProduct) => {
+    const clickDeleteCart = async (idProduct) => {
       if (!getCookie("login_token_qlsp")) {
         alert("phiên đăng nhập hết hạn yêu cầu đăng nhập lại");
         return;
       }
+      const cartrespon = await get_cart_byIdUser(
+        getCookie("login_token_qlsp").user.id
+      );
       post_delete_cart(getCookie("login_token_qlsp").user.id, idProduct).then(
-        () => userStore().reload()
+        () => userStore().reload(cartrespon.data)
       );
     };
     return {
