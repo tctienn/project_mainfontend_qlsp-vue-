@@ -12,14 +12,7 @@
             style="width: 100%; height: 60%; border: solid 1px black"
           />
 
-          <div
-            style="
-              width: 80%;
-              text-align: center;
-              padding: 20px;
-              margin-top: -20px;
-            "
-          >
+          <div style="width: 100%; text-align: center; padding: 20px">
             <h4>{{ e.blog.title }}</h4>
             <small>by: {{ e.blog.nameCreateUser }}</small>
           </div>
