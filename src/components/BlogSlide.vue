@@ -7,12 +7,16 @@
           style="width: 300px; height: 300px; cursor: pointer"
           @click="router.push(`/blog/detail/${e.blog.id}`)"
         >
-          <img
-            :src="e.blog.imgBackGround"
-            style="width: 100%; height: 60%; border: solid 1px black"
-          />
+          <img :src="e.blog.imgBackGround" style="width: 100%; height: 60%" />
 
-          <div style="width: 100%; text-align: center; padding: 20px">
+          <div
+            style="
+              width: 100%;
+              text-align: center;
+              padding: 20px;
+              background-color: rgb(207, 207, 207);
+            "
+          >
             <h4>{{ e.blog.title }}</h4>
             <small>by: {{ e.blog.nameCreateUser }}</small>
           </div>
