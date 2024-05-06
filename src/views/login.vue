@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="lefts">
+    <div class="lefts" style="background-image: url('./ay.jpg')">
       <div class="contenleft">
         <h1 style="font-family: Lucida Calligraphy; color: white">
           if you are not yet registered
@@ -200,7 +200,7 @@ export default {
 
 .lefts {
   width: 60%;
-  background-image: url("@/ay.jpg");
+
   background-size: 120% 100%;
   position: relative;
   z-index: 1;
