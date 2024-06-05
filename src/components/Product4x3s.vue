@@ -65,7 +65,7 @@
 </template>
       
   <script >
-import { onMounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import {
   get_products,
   get_products_by_name_containing,
@@ -177,7 +177,6 @@ export default {
       page.value = 1;
     });
 
-    onMounted(() => {});
     watch;
     return {
       data,
