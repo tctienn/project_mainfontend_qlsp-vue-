@@ -2,7 +2,7 @@
   <div v-if="data?.data.length > 0" class="productside">
     <div
       style="
-        width: 100%;
+        width: 75%;
         aspect-ratio: 60 / 25;
         display: flex;
         margin: 0 0 20px 0;
@@ -50,7 +50,7 @@
         <p
           style="
             display: -webkit-box;
-            -webkit-line-clamp: 4; /* Số dòng tối đa bạn muốn hiển thị */
+            -webkit-line-clamp: 2; /* Số dòng tối đa bạn muốn hiển thị */
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;

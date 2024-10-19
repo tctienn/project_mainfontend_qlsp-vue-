@@ -9,6 +9,7 @@ import CartUser from '@/views/CartUser.vue';
 import PayVNPay from '@/views/PayVNPay.vue';
 import Profile from '@/views/Profile.vue';
 import ChangePassword from '@/views/ChangePassword.vue';
+import BlogList from '@/views/BlogList.vue';
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     path: '/changePassword',
     name: 'changePassword',
     component: ChangePassword
+  },
+  {
+    path: '/bloglist',
+    name: 'bloglist',
+    component: BlogList
   },
   {
     path: '/:pathMatch(.*)*',

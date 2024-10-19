@@ -8,15 +8,15 @@
           list-style-type: none;
         "
       >
-        <li>© 2023 Flone.</li>
+        <li>© 2024 ct shop (sản phẩm cá nhân cho đồ án tốt nghiệp)</li>
 
-        <li>ABOUT US</li>
+        <li>Về sản phẩm</li>
 
-        <li>USEFUL LINKS</li>
+        <li>Đường dẫn</li>
 
-        <li>FOLLOW US</li>
+        <li>Theo dõi:</li>
 
-        <li>SUBSCRIBE</li>
+        <li>Đăng ký</li>
       </ul>
     </div>
   </div>

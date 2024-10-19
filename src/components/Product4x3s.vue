@@ -203,7 +203,8 @@ export default {
 .productitem {
   width: 24%;
   aspect-ratio: 11 / 15;
-  border: solid 1px black;
+  border: solid 1px rgba(0, 0, 0, 0);
+  background-color: rgb(241 241 241);
   margin-bottom: 20px;
 }
 .imgItem {

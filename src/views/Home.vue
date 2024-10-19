@@ -25,7 +25,7 @@
               <br />
 
               <router-link to="collecttion" style="color: rgb(0, 0, 0)">
-                <button class="button">Buy now</button>
+                <button class="button">Mua ngay</button>
               </router-link>
             </div>
             <!-- <div class="imgslide"></div> -->
@@ -37,7 +37,7 @@
   </div>
   <div class="body">
     <br />
-    <table style="width: 100%">
+    <!-- <table style="width: 100%">
       <tr>
         <td>
           <div class="iconbody">
@@ -45,8 +45,9 @@
               <v-icon size="50px">mdi-truck-cargo-container</v-icon>
             </div>
             <div>
-              <b>Free Shipping</b>
-              <div>Free shipping on all oder</div>
+              <b>Miễn phí giao hàng</b>
+              <br />
+              <small>Miễn phí giao hàng trên mọi hóa đơn</small>
             </div>
           </div>
         </td>
@@ -56,8 +57,9 @@
               <v-icon size="50px">mdi-truck-cargo-container</v-icon>
             </div>
             <div>
-              <b>Free Shipping</b>
-              <div>Free shipping on all oder</div>
+              <b>Miễn phí giao hàng</b>
+              <br />
+              <small>Miễn phí giao hàng trên mọi hóa đơn</small>
             </div>
           </div>
         </td>
@@ -67,8 +69,9 @@
               <v-icon size="50px">mdi-truck-cargo-container</v-icon>
             </div>
             <div>
-              <b>Free Shipping</b>
-              <div>Free shipping on all oder</div>
+              <b>Miễn phí giao hàng</b>
+              <br />
+              <small>Miễn phí giao hàng trên mọi hóa đơn</small>
             </div>
           </div>
         </td>
@@ -78,21 +81,22 @@
               <v-icon size="50px">mdi-truck-cargo-container</v-icon>
             </div>
             <div>
-              <b>Free Shipping</b>
-              <div>Free shipping on all oder</div>
+              <b>Miễn phí giao hàng</b>
+              <br />
+              <small>Miễn phí giao hàng trên mọi hóa đơn</small>
             </div>
           </div>
         </td>
       </tr>
-    </table>
+    </table> -->
     <div style="width: max-content; margin: auto">
-      —————————— PRODUCT ——————————
+      —————————— Sản phẩm ——————————
     </div>
     <br />
     <product4x3Vue :searchEvem="searchProp" />
     <br />
     <div style="width: max-content; margin: auto">
-      —————————— BLOG ——————————
+      —————————— Quản bá ——————————
     </div>
     <br />
     <div style="width: 100%; display: flex; justify-content: space-between">
@@ -288,7 +292,6 @@ export default {
 }
 
 .itemBlog {
-  border: solid 1px black;
   margin: auto;
   width: 30%;
   aspect-ratio: 2/2;

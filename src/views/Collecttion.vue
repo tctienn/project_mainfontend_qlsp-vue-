@@ -49,15 +49,21 @@
           type="text"
           placeholder="tìm tên sản phẩm"
         />
-        <v-btn class="ml-auto" style="width: max-content" variant="text">
+        <v-btn
+          class="ml-auto"
+          style="width: max-content"
+          variant="text"
+          v-on:click="searchHandle"
+        >
           <v-icon
             id="activator-target"
             class="icon"
             style="border-left: solid 0.7px rgb(148, 148, 148); height: 100%"
             size="20px"
-            v-on:click="$emit('ay', searchText)"
-            >mdi-magnify</v-icon
           >
+            <!-- v-on:click="$emit('ay', searchText)" -->
+            mdi-magnify
+          </v-icon>
         </v-btn>
       </div>
       <div style="width: 100%">
@@ -237,6 +243,7 @@ import {
   get_products_by_idbrand,
   get_products_by_idsize,
   get_products_by_idtag,
+  get_products_by_name_containing,
   get_sizes,
   get_tags,
 } from "@/api/ApiRequest";
@@ -402,11 +409,26 @@ export default {
       param.value = {
         id: select.value.id,
         page: pag - 1,
-        size: 12,
+        size: form.value == 1 ? 12 : 4,
       };
       typeRender(select);
     };
-
+    const searchHandle = async () => {
+      const responses = await get_products_by_name_containing({
+        name: searchText.value,
+        page: 1,
+        size: form.value == 1 ? 12 : 4,
+        sort: "id,asc",
+      });
+      console.log("datsssssssssss", responses);
+      const products = responses.data.content.map?.((e) => {
+        return e;
+      });
+      data.value = {
+        data: products,
+        totalPages: responses.data.totalPages,
+      };
+    };
     watch(select, (n, o) => {
       if (n != o) {
         // console.log("ui");
@@ -414,7 +436,7 @@ export default {
       param.value = {
         id: select.value.id,
         page: 0,
-        size: 12,
+        size: form.value == 1 ? 12 : 4,
       };
       typeRender(select);
     });
@@ -428,6 +450,7 @@ export default {
       searchText,
       changepage,
       form,
+      searchHandle,
     };
   },
 };

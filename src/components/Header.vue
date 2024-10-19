@@ -4,11 +4,7 @@
       <tr>
         <td style="padding-left: 100px">
           <router-link to="/">
-            <img
-              style="width: 120px"
-              src="https://reactdemo.hasthemes.com/flone/p2/img/logo/flone-black.png"
-              alt="logo"
-            />
+            <img style="width: 250px" src="/Logo.png" alt="logo" />
           </router-link>
         </td>
         <td style="width: 40%">

@@ -35,7 +35,17 @@
                   required
                   placeholder="Nhập địa chỉ nhận hàng"
                 />
+                <input
+                  type="hidden"
+                  class="address"
+                  id="latlon"
+                  name="latlon"
+                  v-model="latlon"
+                  required
+                  placeholder="tọa độ địa chỉ"
+                />
               </div>
+              <MapPay :querys="address" @pointLALON="emitMap" />
               <input type="hidden" id="idUser" name="idUser" v-model="idUser" />
               <input
                 type="hidden"
@@ -72,9 +82,11 @@ import { pay } from "@/api/ApiUser";
 import { getCookie } from "@/api/CookieFuntion";
 import { userStore } from "@/stores/counter";
 import { ref } from "vue";
+import MapPay from "@/components/MapPay.vue";
 
 export default {
   name: "PaSy",
+  components: { MapPay },
   setup() {
     /////////////////////
     let date = new Date();
@@ -104,6 +116,7 @@ export default {
         : 0
     );
     const address = ref("");
+    const latlon = ref("");
     const idUser = ref(user ? getCookie("login_token_qlsp").user.id : 0); // Giá trị này cần được cung cấp từ nơi sử dụng component
     const orderInfo = ref("Thanh toan don hang ");
     const submit = () => {
@@ -117,6 +130,12 @@ export default {
         currency: "VND",
       }).format(number);
     };
+
+    const emitMap = (dataParams) => {
+      // alert(dataParams.ads);
+      latlon.value = "LAT:" + dataParams.lat + "| LON:" + dataParams.lon;
+      address.value = dataParams.ads;
+    };
     return {
       amount,
       address,
@@ -127,6 +146,8 @@ export default {
       submitOder,
       formatVND,
       timestamp,
+      emitMap,
+      latlon,
     };
   },
 };
