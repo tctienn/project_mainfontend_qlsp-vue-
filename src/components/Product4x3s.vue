@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="textItem">
-          {{ e.name }}
+          <div class="text-ellipsis">{{ e.name }}</div>
           <div style="display: flex; width: max-content; margin: auto">
             <v-icon
               v-for="(e2, i2) in 5"
@@ -279,5 +279,16 @@ export default {
 .itemHide:hover {
   background-color: black;
   color: white;
+}
+
+.text-ellipsis {
+  /*chuyển text sang ... nếu quá dòng */
+  width: 100%; /* hoặc bất kỳ kích thước nào phù hợp với giao diện của bạn */
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Giới hạn hiển thị 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 </style>
