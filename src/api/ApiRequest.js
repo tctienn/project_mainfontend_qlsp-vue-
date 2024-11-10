@@ -54,7 +54,7 @@ export const get_products = (data) => {
         }
     })
 }
-export const get_blog_byrender = (data) => {
+export const get_blog_byrender = () => {
     return apiUser.get(`blog/get-blog-by-render-type`, {
         params: {
 
