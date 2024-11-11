@@ -1,7 +1,7 @@
 import { toast } from "vue3-toastify";
 
 // export const domain = 'https://backendqlspayay.up.railway.app'
-export const domain = 'http://171.244.60.77:8080'
+export const domain = 'https://tcds.io.vn:8080'
 
 // const name ='login_token';
 export const taocock = (name, token) => {
