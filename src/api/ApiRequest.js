@@ -12,7 +12,7 @@ const url = domain + '/public'
 
 const apiUser = axios.create({
     baseURL: url,
-    timeout: 10000, // set timeout to 10 seconds
+    // timeout: 10000, // set timeout to 10 seconds
     headers: {
         'Content-Type': 'application/json',
     },
