@@ -10,6 +10,7 @@ import PayVNPay from '@/views/PayVNPay.vue';
 import Profile from '@/views/Profile.vue';
 import ChangePassword from '@/views/ChangePassword.vue';
 import BlogList from '@/views/BlogList.vue';
+import HistoryUser from '@/views/HistoryUser.vue';
 
 const routes = [
   {
@@ -61,6 +62,11 @@ const routes = [
     path: '/bloglist',
     name: 'bloglist',
     component: BlogList
+  },
+  {
+    path: '/history',
+    name: 'history',
+    component: HistoryUser
   },
   {
     path: '/:pathMatch(.*)*',

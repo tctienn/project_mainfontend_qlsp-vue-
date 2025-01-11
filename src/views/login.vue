@@ -3,10 +3,10 @@
     <div class="lefts" style="background-image: url('./ay.jpg')">
       <div class="contenleft">
         <h1 style="font-family: Lucida Calligraphy; color: white">
-          if you are not yet registered
+          Nếu bạn chưa đăng ký
         </h1>
         <p style="color: white">
-          create an account to make purchases more quickly
+          Hãy tạo một tài khoản để có thể sử dụng các tính năng của dịch vụ
         </p>
         <br />
         <br />
@@ -16,10 +16,10 @@
           style="width: max-content"
           @click="form = !form"
         >
-          CREATE AN ACCOUNT
+          TẠO TÀI KHOẢN
         </button>
         <router-link v-else to="/">
-          <button class="button" style="width: max-content">Goto Home</button>
+          <button class="button" style="width: max-content">Trang Chủ</button>
         </router-link>
       </div>
     </div>
@@ -38,11 +38,11 @@
           align-items: center;
         "
       >
-        <h2>Weocome to fashion web</h2>
+        <h2>Chào mừng tới giao diện cho khách hàng của shop</h2>
         <br />
         <p style="width: 80%; text-align: center">
-          by entering with your user you can make purchases more quick and have
-          more control of your oders
+          Bằng cách nhập với người dùng của bạn, bạn có thể mua hàng nhanh hơn
+          và kiểm soát đơn hàng của mình tốt hơn
         </p>
         <input
           class="input"
@@ -59,14 +59,14 @@
         />
         <br />
         <br />
-        <button class="button" @click="login">LOGIN</button>
+        <button class="button" @click="login">Đăng nhập</button>
         or
         <br />
         <router-link to="/">
-          <button class="button" style="width: max-content">Goto Home</button>
+          <button class="button" style="width: max-content">Trang Chủ</button>
         </router-link>
         <router-link to="/changePassword">
-          <small>fogot password ?</small>
+          <small>Quên mật khẩu ?</small>
         </router-link>
       </div>
       <div
@@ -80,11 +80,11 @@
           align-items: center;
         "
       >
-        <h2>Weocome to fashion web</h2>
+        <h2>Chào mừng tới giao diện cho khách hàng của shop</h2>
         <br />
         <p style="width: 80%; text-align: center">
-          by entering with your user you can make purchases more quick and have
-          more control of your oders
+          Bằng cách nhập với người dùng của bạn, bạn có thể mua hàng nhanh hơn
+          và kiểm soát đơn hàng của mình tốt hơn
         </p>
         <input
           class="input"
@@ -114,9 +114,9 @@
           v-model="input.gmail"
         />
         <br />
-        <button class="button" @click="createAccount">Create Account</button>
-        <small> if your have account </small>
-        <button class="button" @click="form = !form">LOGIN</button>
+        <button class="button" @click="createAccount">Tạo tài khoản</button>
+        <small> Bạn đã có tài khoản ? </small>
+        <button class="button" @click="form = !form">Đăng nhập</button>
       </div>
     </div>
   </div>
@@ -163,7 +163,7 @@ export default {
       }
       const regexsdt = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
       if (!regexsdt.test(input.value.sdt)) {
-        alert("số điẹne thoại không hợp lệ yêu cầu nhập lại");
+        alert("Số điện thoại không hợp lệ yêu cầu nhập lại");
         return;
       }
       const regexGmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;

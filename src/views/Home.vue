@@ -96,7 +96,7 @@
     <product4x3Vue :searchEvem="searchProp" />
     <br />
     <div style="width: max-content; margin: auto">
-      —————————— Quản bá ——————————
+      —————————— Bài viết ——————————
     </div>
     <br />
     <div style="width: 100%; display: flex; justify-content: space-between">
@@ -114,6 +114,7 @@
               height: 30%;
               margin: auto;
               margin-top: -20%;
+              border-radius: 11px;
               background-color: white;
               z-index: 1;
               position: relative;
@@ -121,7 +122,18 @@
               padding-top: 4px;
             "
           >
-            <h4>{{ e.blog.title }}</h4>
+            <h4
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              "
+              :title="e.blog.title"
+            >
+              {{ e.blog.title }}
+            </h4>
             <small style="color: gray; font-style: italic">
               Được tạo bởi: {{ e.blog.nameCreateUser }}
             </small>
@@ -169,7 +181,7 @@ export default {
       // await nextTick();
       isDataLoaded.value = true;
       // items.value = { ...items.value };
-      console.log("item", items.value[0].blog.title);
+      // console.log("item", items.value[0].blog.title);
     };
     getSlide();
 

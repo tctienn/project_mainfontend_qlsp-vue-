@@ -119,7 +119,9 @@
             </div>
 
             <div style="position: relative">
-              <!-- <v-icon class="icon" size="20px">mdi-heart-outline</v-icon> -->
+              <router-link to="/history" title="Lịch sử mua hàng">
+                <v-icon class="icon" size="20px">mdi-history</v-icon>
+              </router-link>
               <!-- <div
                 x
                 style="
@@ -137,7 +139,7 @@
               ></div> -->
             </div>
             <div style="position: relative">
-              <router-link to="/cart-user">
+              <router-link to="/cart-user" title="Giỏ hàng">
                 <v-icon class="icon" size="20px">mdi-cart-arrow-down</v-icon>
               </router-link>
               <div
@@ -193,7 +195,7 @@ export default {
       return response.data;
     };
     const load = async () => {
-      console.log("header", getCookie("login_token_qlsp"));
+      console.log("header tokenlogin", getCookie("login_token_qlsp"));
 
       if (getCookie("login_token_qlsp")) {
         getCart(getCookie("login_token_qlsp").user.id);

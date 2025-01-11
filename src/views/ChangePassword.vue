@@ -17,13 +17,13 @@
           align-items: center;
         "
       >
-        <h2>Weocome to fashion web</h2>
+        <h2>Chào mừng tới giao diện cho khách hàng của shop</h2>
         <br />
         <p style="width: 80%; text-align: center">
-          Nhập thông tin để có thể đổi lại mật khẩu của bạn
+          <small>Nhập thông tin để có thể đổi lại mật khẩu của bạn</small>
         </p>
         <br />
-        <label>gmail người dùng đã đăng ký</label>
+        <label><small>Gmail người dùng đã đăng ký : </small> </label>
         <input
           class="input"
           type="text"
@@ -32,20 +32,20 @@
           v-model="input.gmail"
         />
         <br />
-        <label> tên người dùng đã đăng ký </label>
+        <label> <small>Tên tài khoản người dùng đã đăng ký : </small> </label>
         <input
           class="input"
           type="text"
           namme="username"
-          placeholder="User name"
+          placeholder="Nhập tên tài khoản"
           v-model="input.username"
         />
         <br />
-        <label>mật khẩu mới</label>
+        <label><small>Mật khẩu mới : </small></label>
         <input
           class="input"
           type="password"
-          placeholder="Password"
+          placeholder="mật khẩu mới"
           v-model="input.password"
         />
         <br />
@@ -56,7 +56,7 @@
         or
         <br />
         <router-link to="/login">
-          <button class="button" style="width: max-content">login</button>
+          <button class="button" style="width: max-content">Đăng nhập</button>
         </router-link>
       </div>
     </div>

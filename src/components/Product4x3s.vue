@@ -104,6 +104,13 @@ export default {
       }, 1000);
     };
     const getproducts = async (paramProduct) => {
+      ////////////////////
+      console.log("khóa lấy toàn bộ sản phẩm khi đang tìm theo tên");
+      if (props.searchEvem.check == true) {
+        return;
+      }
+      ///////////////
+
       const result = await get_products(paramProduct);
       // console.log("result", result);
       // data.value = await getcanbo();
@@ -140,12 +147,11 @@ export default {
 
     watch(page, (newData, oldData) => {
       // gọi lấy dữ liệu theo số trang
-      // console.log("watch data", newData, oldData);
-
+      console.log("watch data page", newData, oldData);
       if (newData === oldData) {
-        console.log("watch data", newData, oldData);
+        // console.log("watch data", newData, oldData);
         getproducts({ page: 1, size: 12 });
-        console.log(newData - 1);
+        // console.log(newData - 1);
       }
       if (props.searchEvem.check == false) {
         getproducts({
@@ -201,6 +207,7 @@ export default {
   flex-wrap: wrap;
 }
 .productitem {
+  border-radius: 10px;
   width: 24%;
   aspect-ratio: 11 / 15;
   border: solid 1px rgba(0, 0, 0, 0);

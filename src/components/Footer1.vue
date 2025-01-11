@@ -8,7 +8,10 @@
           list-style-type: none;
         "
       >
-        <li>© 2024 ct shop (sản phẩm cá nhân cho đồ án tốt nghiệp)</li>
+        <li>
+          ™ TCTIEN 2024 ct shop
+          <small><small>(sản phẩm cá nhân cho đồ án tốt nghiệp)</small></small>
+        </li>
 
         <li>Về sản phẩm</li>
 

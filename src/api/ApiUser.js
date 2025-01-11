@@ -100,3 +100,8 @@ export const submitOrder = (amount, idUser, orderInfo, address) => {
         }
     })
 }
+
+
+export const get_invoices_user = (gmail, tenNguoiNhan, page) => {
+    return apiUser.get(`invoice/get-all-invoid-user?gmail=${gmail}&tenNguoiNhan=${tenNguoiNhan}&page=${page}&size=7&sort=id,asc`)
+}
