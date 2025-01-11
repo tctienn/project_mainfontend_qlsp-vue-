@@ -23,6 +23,7 @@
                   {{ formatVND(amount) }}
                 </div>
               </div>
+
               <div class="form-group">
                 <label for="address">Địa chỉ giao hàng:</label>
                 <br />
