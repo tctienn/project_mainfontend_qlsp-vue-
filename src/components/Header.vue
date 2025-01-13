@@ -97,14 +97,19 @@
             </v-dialog>
             <div class="icon" style="position: relative">
               <router-link to="/login" v-if="user?.getUserStore == null">
-                <Icon icon="et:profile-female" width="20px"></Icon>
+                <!-- <Icon icon="et:profile-female" width="20px"></Icon> -->
+                <v-icon id="activator-target" class="icon" size="20px"
+                  >mdi-login</v-icon
+                >
               </router-link>
               <router-link v-else to="/profile">
-                <img
+                <!-- <img
                   src="/proflie.gif"
                   style="width: 25px; aspect-ratio: 2/2; border-radius: 5px"
                   :title="user?.getUserStore.userName"
-              /></router-link>
+              /> -->
+                <Icon icon="et:profile-female" width="20px"></Icon>
+              </router-link>
 
               <small
                 style="
